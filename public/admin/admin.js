@@ -25,6 +25,7 @@ tinymce.init({
     file_picker_callback : elFinderBrowser
 });
 
+
    function elFinderBrowser (callback, value, meta) {
     tinymce.activeEditor.windowManager.openUrl({
         title: 'File Manager',
