@@ -66,7 +66,7 @@
                                 <form action="{{ route('post.destroy', $post['id']) }}" method="POST" style="display: inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm delete-btn" href="">
+                                    <button type="submit" class="btn btn-danger btn-sm delete-btn" href="{{ route('post.destroy', $post['id']) }}">
                                         <i class="fas fa-trash">
                                         </i>
                                         Удалить
