@@ -16,7 +16,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('created_at', 'DESC')->get();
+
+        return view('admin.post.index', [
+            'posts' => $posts,
+        ]);
     }
 
     /**
@@ -27,7 +31,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::orderBy('created_at', 'DESC')->get();
-        
+
         return view('admin.post.create', [
             'categories' => $categories
         ]);
@@ -41,7 +45,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post();
+        $post->title = $request->title;
+        $post->img = $request->img;
+        $post->text = $request->text;
+        $post->cat_id = $request->cat_id;
+        $post->save();
+
+        return redirect()->back()->withSuccess('Статья была успешно добавленна');
     }
 
     /**
@@ -63,7 +74,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::orderBy('created_at', 'DESC')->get();
+        return view('admin.post.edit', [
+            'post' => $post,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -75,7 +90,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->title = $request->title;
+        $post->img = $request->img;
+        $post->text = $request->text;
+        $post->cat_id = $request->cat_id;
+        $post->save();
+
+        return redirect()->back()->withSuccess('Статья была успешно обновленна');
     }
 
     /**
